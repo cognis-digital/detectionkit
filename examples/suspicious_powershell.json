@@ -1,0 +1,24 @@
+{
+  "id": "ckd-0002-suspicious-powershell",
+  "title": "Suspicious PowerShell Encoded Command",
+  "description": "Detects PowerShell process creation invoking an encoded command or downloading remote content, a common in-memory execution pattern.",
+  "author": "Cognis Digital",
+  "severity": "high",
+  "tags": ["attack.execution", "attack.t1059.001"],
+  "logsource": {
+    "category": "process_creation",
+    "product": "windows"
+  },
+  "condition": {
+    "and": [
+      { "selector": { "field": "Image", "operator": "contains", "value": "powershell" } },
+      {
+        "or": [
+          { "selector": { "field": "CommandLine", "operator": "contains", "value": "-EncodedCommand" } },
+          { "selector": { "field": "CommandLine", "operator": "contains", "value": "DownloadString" } },
+          { "selector": { "field": "CommandLine", "operator": "regex", "value": "(?i)-e(nc)?\\s+[A-Za-z0-9+/=]{40,}" } }
+        ]
+      }
+    ]
+  }
+}

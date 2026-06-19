@@ -1,0 +1,23 @@
+{
+  "id": "ckd-0003-linux-sshd-brute-force",
+  "title": "Linux SSHD Repeated Authentication Failures",
+  "description": "Detects sshd authentication failures in the system log, indicative of SSH brute-force or credential-stuffing attempts against a Linux host.",
+  "author": "Cognis Digital",
+  "severity": "low",
+  "tags": ["attack.credential_access", "attack.t1110.001"],
+  "logsource": {
+    "product": "linux",
+    "service": "sshd"
+  },
+  "condition": {
+    "and": [
+      { "selector": { "field": "program", "operator": "equals", "value": "sshd" } },
+      {
+        "or": [
+          { "selector": { "field": "message", "operator": "contains", "value": "Failed password" } },
+          { "selector": { "field": "message", "operator": "contains", "value": "authentication failure" } }
+        ]
+      }
+    ]
+  }
+}

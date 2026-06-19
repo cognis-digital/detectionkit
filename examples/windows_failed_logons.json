@@ -1,0 +1,19 @@
+{
+  "id": "ckd-0001-win-failed-logons",
+  "title": "Multiple Windows Failed Logons From Single Source",
+  "description": "Detects Windows Security event 4625 (failed logon) with a non-interactive logon type, indicative of password spraying or brute force.",
+  "author": "Cognis Digital",
+  "severity": "medium",
+  "tags": ["attack.credential_access", "attack.t1110"],
+  "logsource": {
+    "category": "authentication",
+    "product": "windows",
+    "service": "security"
+  },
+  "condition": {
+    "and": [
+      { "selector": { "field": "EventID", "operator": "equals", "value": "4625" } },
+      { "selector": { "field": "LogonType", "operator": "in", "values": ["3", "10"] } }
+    ]
+  }
+}
