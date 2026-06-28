@@ -20,6 +20,39 @@ License: COCL 1.0
 
 ---
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+  "results": [
+    {
+      "id": "1234567890",
+      "category": "virus",
+      "name": "W32.DetectionKit-1",
+      "risk_level": "high",
+      "description": "A highly infectious and destructive virus.",
+      "scan_time": 3.45,
+      "detected_at": "2022-07-15T14:30:00Z"
+    },
+    {
+      "id": "2345678901",
+      "category": "trojan",
+      "name": "Troj.DetectionKit-2",
+      "risk_level": "medium",
+      "description": "A moderately malicious trojan.",
+      "scan_time": 2.12,
+      "detected_at": "2022-07-15T14:31:00Z"
+    }
+  ]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Install / Build
 
 Requires Go 1.22+.
